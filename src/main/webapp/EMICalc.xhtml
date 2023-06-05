@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>EMI Calculator</title>
+	<style>
+.card{
+	margin: auto;
+	background-color:transparent;
+	background-color: rgba(255, 255, 255, 0.5); /* white with 50% opacity */
+}
+h2 {
+	text-align: center;
+	text-decoration: underline;
+}
+</style>
+<script>
+    function clearInputFields() {
+      var inputs = document.querySelectorAll("input");
+        inputs[0].value = "";
+        inputs[1].value = "";
+        inputs[2].value = "";
+        inputs[3].value = "";
+
+      var spinners = document.querySelectorAll(".ui-spinner-input");
+        spinners[0].value = 0;
+        spinners[1].value = "";
+        spinners[2].value = "";
+        spinners[3].value = "";
+      
+    	var inputtext = document.querySelectorAll(".ui-inputtext");
+    	inputtext[0].value = "";
+   		inputtext[1].value = "";
+    	inputtext[2].value = "";
+    	inputtext[3].value = "";
+    }
+  
+  </script>
+</h:head>
+<h:body>
+	<h2>EMI Calculator</h2>
+	<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+	<div class="card" style="width: 35rem;">
+		<p:tabView onTabChange="clearInputFields()">
+			<!--                             personal Loan                      -->
+			<p:tab title="Personal Loan">
+				
+			</p:tab>
+			
+			<!-- CAR Loan-->
+			<p:tab title="Car Loan">
+				<p:card style="width: 30rem; margin-bottom: 2em" styleClass="card">
+					<h:form>
+
+						<p:growl id="growl" showDetail="true" />
+						<h5>Loan Amount</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:spinner id="spinner1" value="#{sliderView.number3}" min="0"
+								max="1000000" stepFactor="500" suffix=" ₹"
+								valueChangeListener="#{sliderView.onInputChanged}">
+								<p:ajax process="@this" update="growl" />
+							</p:spinner>
+							<p:slider for="spinner1" minValue="0" maxValue="1000000"
+								step="500" />
+						</h:panelGrid>
+						<br />
+						<h5>Rate Of Intrest :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<h:outputText id="output"
+								value="Rate of Intrest #{sliderView.number2} %" />
+							<p:inputText id="decimal" value="#{sliderView.number2}" />
+							<p:slider for="decimal" minValue="0.2" maxValue="50.0" step="0.1"
+								range="min" display="output" style="width: 200px"
+								displayTemplate="Rate of Intrest {value} %" />
+
+						</h:panelGrid>
+						<br />
+						<h5>Loan Tenure :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:inputText id="sliderTxtMin" value="#{sliderView.number1}" />
+							<p:slider for="sliderTxtMin" />
+						</h:panelGrid>
+						<h5>Loan Tenure(Months) :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:inputText id="months" value="#{entities.l_tenure_month}" />
+							<p:slider for="months" />
+						</h:panelGrid>
+						<p:commandButton type="button" value="Calculate"
+							styleClass="ui-button-raised ui-button-secondary" />
+					</h:form>
+				</p:card>
+			</p:tab>
+
+			<!--Home Loan-->
+			<p:tab title="Study Loan">
+				<p:card style="width: 30rem; margin-bottom: 2em" styleClass="card">
+					<h:form>
+
+						<p:growl id="growl" showDetail="true" />
+						<h5>Loan Amount</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:spinner id="spinner1" value="#{sliderView.number3}" min="0"
+								max="1000000" stepFactor="500" suffix=" ₹"
+								valueChangeListener="#{sliderView.onInputChanged}">
+								<p:ajax process="@this" update="growl" />
+							</p:spinner>
+							<p:slider for="spinner1" minValue="0" maxValue="1000000"
+								step="500" />
+						</h:panelGrid>
+						<br />
+						<h5>Rate Of Intrest :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<h:outputText id="output"
+								value="Rate of Intrest #{sliderView.number2} %" />
+							<p:inputText id="decimal" value="#{sliderView.number2}" />
+							<p:slider for="decimal" minValue="0.2" maxValue="50.0" step="0.1"
+								range="min" display="output" style="width: 200px"
+								displayTemplate="Rate of Intrest {value} %" />
+
+						</h:panelGrid>
+						<br />
+						<h5>Loan Tenure :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:inputText id="sliderTxtMin" value="#{sliderView.number1}" />
+							<p:slider for="sliderTxtMin" />
+						</h:panelGrid>
+						<h5>Loan Tenure(Months) :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:inputText id="months" value="#{entities.l_tenure_month}" />
+							<p:slider for="months" />
+						</h:panelGrid>
+						<p:commandButton type="button" value="Calculate"
+							styleClass="ui-button-raised ui-button-secondary" />
+					</h:form>
+				</p:card>
+			</p:tab>
+
+			<p:tab title="Home Loan">
+				<p:card style="width: 30rem; margin-bottom: 2em" styleClass="card">
+					<h:form>
+
+						<p:growl id="growl" showDetail="true" />
+						<h5>Loan Amount</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:spinner id="spinner1" value="#{sliderView.number3}" min="0"
+								max="1000000" stepFactor="500" suffix=" ₹"
+								valueChangeListener="#{sliderView.onInputChanged}">
+								<p:ajax process="@this" update="growl" />
+							</p:spinner>
+							<p:slider for="spinner1" minValue="0" maxValue="1000000"
+								step="500" />
+						</h:panelGrid>
+						<br />
+						<h5>Rate Of Intrest :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<h:outputText id="output"
+								value="Rate of Intrest #{sliderView.number2} %" />
+							<p:inputText id="decimal" value="#{sliderView.number2}" />
+							<p:slider for="decimal" minValue="0.2" maxValue="50.0" step="0.1"
+								range="min" display="output" style="width: 200px"
+								displayTemplate="Rate of Intrest {value} %" />
+
+						</h:panelGrid>
+						<br />
+						<h5>Loan Tenure :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:inputText id="sliderTxtMin" value="#{sliderView.number1}" />
+							<p:slider for="sliderTxtMin" />
+						</h:panelGrid>
+						<h5>Loan Tenure(Months) :</h5>
+						<h:panelGrid columns="1" style="margin-bottom: 10px">
+							<p:inputText id="months" value="#{entities.l_tenure_month}" />
+							<p:slider for="months" />
+						</h:panelGrid>
+						<p:commandButton type="button" value="Calculate"
+							styleClass="ui-button-raised ui-button-secondary" />
+					</h:form>
+				</p:card>
+			</p:tab>
+		</p:tabView>
+	</div>
+
+</h:body>
+</html>

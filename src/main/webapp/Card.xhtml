@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<style>
+.form {
+	width: 600px;
+	margin: 0 auto;
+	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #ddd;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cd{
+width:350px;
+margin-top:5ex;
+margin-left:-2ex;
+text-align: center;
+font-weight: bolder;
+}
+</style>
+</h:head>
+<h:body>
+<h:form class="form">
+<h2>EMI Details</h2>
+<p:panelGrid columns="2" styleClass="cd">
+<h:outputLabel for="monthly_emi" value="Monthly EMI: "/>
+  <h:outputText id="monthly_emi" value="#{emiCalc.monthly_emi}">
+  <f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+  </h:outputText>
+
+  <h:outputLabel for="interest_amt" value="Total Interest Amount: "/>
+  <h:outputText id="interest_amt" value="#{emiCalc.interest_amt}" >
+  <f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+  </h:outputText>
+
+  <h:outputLabel for="no_months" value="Number of EMIs: "/>
+  <h:outputText id="no_months" value="#{emiCalc.no_months}">
+  </h:outputText>
+  
+   <h:outputLabel for="T_amt" value="Total Amount : "/>
+  <h:outputText id="T_amt" value="#{emiCalc.interest_amt+emiCalc.p_amt}">
+  <f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+  </h:outputText>
+   </p:panelGrid>
+   </h:form>
+</h:body>
+</html>

@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<h:head>
+	<title>Personal Loan</title>
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/4.1.0/css/primeicons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primefaces/11.4.1/css/primefaces.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/primefaces/11.4.1/js/primefaces.min.js"></script>
+	<style>
+body {
+	background-image: url('image/bg2.jpg');
+	background-size: cover;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+
+.cards {
+	padding-left: 3ex;
+	margin: auto;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+h2 {
+	text-align: center;
+	text-decoration: underline;
+}
+
+h5 {
+	font-size: 2ex;
+	margin-bottom: 0ex;
+}
+.calc-button {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      /* Change button color on hover */
+      .calc-button:hover {
+        background-color: #0069d9;
+      }
+</style>
+	<script>
+    function clearInputFields() {
+     
+
+      var spinners = document.querySelectorAll(".ui-spinner-input");
+        spinners[0].value = "";
+        spinners[1].value = "";
+        spinners[2].value = "";
+        spinners[3].value = "";
+      
+    var inputtext = document.querySelectorAll(".ui-inputtext");
+    inputtext[1].value = 0;
+    inputtext[2].value = 0;
+    inputtext[3].value = 0;
+    }
+    </script>
+</h:head>
+<h:body>
+	<ui:include src="Nav_bar.xhtml" />
+	<h2>Home Loan EMI Calculator</h2>
+	<p:card style="width:25rem; margin-bottom: 2em" styleClass="cards">
+		<h:form>
+			<p:growl id="growl" showDetail="true" />
+			<h5>Loan Amount</h5>
+			<h:panelGrid columns="1">
+				<p:spinner id="p_amt" value="#{emiCalc.p_amt}" min="0" max="1000000"
+					stepFactor="500" suffix=" ₹"
+					valueChangeListener="#{entities.onInputChanged}">
+					<p:ajax process="@this" update="growl" />
+				</p:spinner>
+			</h:panelGrid>
+			<br />
+			<h5>Rate Of Intrest :</h5>
+			<h:panelGrid columns="1">
+				<p:spinner id="roi" value="#{emiCalc.roi}" min="0.00" max="30.00"
+					stepFactor="0.25" suffix=" %">
+					<p:ajax process="@this" update="growl" />
+				</p:spinner>
+			</h:panelGrid>
+			<br />
+
+			<h5>Loan Tenure(Year) :</h5>
+			<h:panelGrid columns="1">
+				<p:spinner id="l_tenure_year" value="#{emiCalc.l_tenure_year}"
+					min="1" max="50" stepFactor="1">
+					<p:ajax process="@this" update="growl" />
+				</p:spinner>
+			</h:panelGrid>
+			<br />
+			<h5>Loan Tenure(Months) :</h5>
+			<h:panelGrid columns="1">
+				<p:spinner id="l_tenure_month" value="#{emiCalc.l_tenure_month}"
+					min="0" max="11" stepFactor="1">
+
+					<p:ajax process="@this" update="growl" />
+				</p:spinner>
+			</h:panelGrid>
+			<br />
+			<h:commandButton value="Calculate EMI"
+				action="#{emiCalc.calculateEMI}" onclick="PF('dlg2').show()" class="calc-button" >
+			</h:commandButton>
+			<br />
+			
+				<ui:include id="cd" src="/Card.xhtml" />
+		</h:form>
+	</p:card>
+</h:body>
+</html>

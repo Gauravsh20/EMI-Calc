@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>LoginPage</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+body {
+	background-image: url('image/bg2.jpg');
+	background-size: cover;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+
+h1 {
+	text-align: center;
+	font-size: 5.5ex;
+}
+
+.form {
+	width: 600px;
+	margin: 0 auto;
+	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #ddd;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	margin-top: 3ex;
+	font-weight: bold;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+input[type="Password"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+input[type="submit"] {
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin-top: 5ex;
+	cursor: pointer;
+	display: block;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background-color: #444;
+}
+
+.error {
+	color: red;
+	margin-top: 5ex;
+	font-weight: bolder;
+}
+
+.form1 {
+	margin-left: 5ex;
+}
+
+.link {
+	color: black;
+	margin: 2ex;
+}
+</style>
+
+
+
+
+</h:head>
+<h:body>
+	<h1>Member Sign-in Page</h1>
+	<h:form class="form" id="form">
+	<label for="Email">Sign in to :</label>
+		<p:selectOneRadio value="#{loginPageBean.logintype}" required="true" requiredMessage="Select Login Type">
+			<f:selectItem itemLabel="Phone No." itemValue="Mobileno" />
+			
+			<f:selectItem itemLabel="Email" itemValue="email" />
+		</p:selectOneRadio>
+		<label for="Email">UserID :</label>
+		<div class="ui-inputgroup">
+			<div class="ui-inputgroup-addon">
+				<i class="pi pi-user"></i>
+			</div>
+			<p:inputText placeholder="Username" value="#{loginPageBean.username}"
+				id="Email" required="true" requiredMessage="UserID is Mandatory" />
+		</div>
+		<h:message for="Email" styleClass="error" />
+
+
+		<label for="Password">Password :</label>
+		<div class="ui-inputgroup">
+			<div class="ui-inputgroup-addon">
+				<i class="pi pi-unlock"></i>
+			</div>
+			<p:password value="#{loginPageBean.password}" id="Password"
+				required="true" requiredMessage="Password is Mandatory"
+				label="Password" />
+		</div>
+		<h:message for="Password" styleClass="error" />
+
+		<h:commandButton value="LOGIN" action="#{loginPageBean.login()}"
+			class="btn btn-primary mb-2" update="gaura"/>
+	</h:form>
+	<p:growl id="gaura" showDetail="true" keepAlive="true" />
+	<h:form class="form">
+		<i class="pi pi-user-plus"></i>
+		<h:commandLink styleClass="link"
+			value="I haven't account?Sign-up Page" action="Registration_Page" />
+
+	</h:form>
+	<h:form class="form">
+		<i class="pi pi-user-edit"></i>
+		<h:commandLink styleClass="link" value="Forget Password?"
+			action="Forget_password_page" />
+	</h:form>
+</h:body>
+</html>

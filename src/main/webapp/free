@@ -1,0 +1,85 @@
+				<p:chart styleClass="chart" type="pie" model="#{entities.model}"
+						style="width:400px;height:300px">
+				</p:chart>
+				
+				<p:row>
+		<h2>Personal Loan EMI Calculator</h2>
+		<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+		<p:card style="width:25rem; margin-bottom: 2em" styleClass="cards">
+			<h:form>
+				<p:growl id="growl" showDetail="true" />
+				<h5>Loan Amount</h5>
+				<h:panelGrid columns="1">
+					<p:spinner id="p_amt" value="#{emiCalc.p_amt}" min="0"
+						max="1000000" stepFactor="500" suffix=" ₹"
+						valueChangeListener="#{entities.onInputChanged}">
+						<p:ajax process="@this" update="growl" />
+					</p:spinner>
+				</h:panelGrid>
+				<br />
+				<h5>Rate Of Intrest :</h5>
+				<h:panelGrid columns="1">
+					<p:spinner id="roi" value="#{emiCalc.roi}" min="0.00" max="30.00"
+						stepFactor="0.25" suffix=" %">
+						<p:ajax process="@this" update="growl" />
+					</p:spinner>
+				</h:panelGrid>
+				<br />
+				<h5>Loan Tenure(Year) :</h5>
+				<h:panelGrid columns="1">
+					<p:spinner id="l_tenure_year" value="#{emiCalc.l_tenure_year}"
+						min="1" max="50" stepFactor="1">
+						<p:ajax process="@this" update="growl" />
+					</p:spinner>
+				</h:panelGrid>
+				<h5>Loan Tenure(Months) :</h5>
+				<h:panelGrid columns="1">
+					<p:spinner id="l_tenure_month" value="#{emiCalc.l_tenure_month}"
+						min="1" max="50" stepFactor="1">
+
+						<p:ajax process="@this" update="growl" />
+					</p:spinner>
+				</h:panelGrid>
+				<p:commandButton value="Calculate"
+					styleClass="ui-button-raised ui-button-secondary"
+					action="#{emiCalc.calculateEMI}">
+				</p:commandButton>
+				<!--onclick="PF('dlg2').show()" onsuccess="clearInputFields()" <p:dialog header="EMI Details" widgetVar="dlg2" minHeight="50"
+					width="400" showEffect="fade" modal="true">
+					<ui:include id="cd" src="/Card.xhtml" />
+				</p:dialog> -->
+
+				<h:outputLabel for="monthly_emi" value="Monthly EMI: " />
+				<h:outputText id="monthly_emi" value="#{emiCalc.monthly_emi}" />
+				<br />
+
+				<h:outputLabel for="interest_amt" value="Total Interest Amount: " />
+				<h:outputText id="interest_amt" value="#{emiCalc.interest_amt}" />
+				<br />
+
+				<h:outputLabel for="no_months" value="Number of EMIs: " />
+				<h:outputText id="no_months" value="#{emiCalc.no_months}" />
+				<br />
+			</h:form>
+		</p:card>
+	</p:row>
+	
+	
+	
+	
+	<h:form class="form">
+		<p:panelGrid columns="2" styleClass="cd">
+			<h:outputText value="Montly EMI :" />
+			<h:outputText value="#{EMIDAO.calculateEMI(entities.p_amt,entities.roi,entities.l_tenure_year,entities.l_tenure_month)}">
+				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			</h:outputText>
+			<h:outputText value="Total Interest :" />
+			 <h:outputText value="#{EMIDAO.calculateTotalInterest(entities.p_amt,entities.roi,entities.l_tenure_year,entities.l_tenure_month)}" >
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			</h:outputText>
+			<h:outputText value="Total Amount :" />
+			<h:outputText value="#{entities.p_amt+entities.interest_amt}" >
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			</h:outputText>
+		</p:panelGrid>
+</h:form>

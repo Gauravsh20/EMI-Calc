@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Change Password</title>
+</h:head>
+<h:body>
+<h:form>
+    <h:panelGrid columns="2">
+        <h:outputLabel value="IFSC Code:" />
+        <h:inputText value="#{bankController.ifscCode}">
+            <f:ajax listener="#{bankController.searchBank}" render="bankDetails" />
+        </h:inputText>
+        
+        <h:outputLabel value="Bank Name:" />
+        <h:outputText value="#{bankController.bank.name}"  />
+        
+        <h:outputLabel value="Branch:" />
+        <h:outputText value="#{bankController.bank.branch}"  />
+        
+        <h:outputLabel value="City:" />
+        <h:outputText value="#{bankController.bank.city}"  />
+        
+        <h:outputLabel value="State:" />
+        <h:outputText value="#{bankController.bank.state}" id="bankDetails" />
+    </h:panelGrid>
+</h:form>
+
+</h:body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>User_Home_Page</title>
+	<style>
+body {
+	background-image: url('image/bg2.jpg');
+	background-size: cover;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+.form {
+	width: 600px;
+	margin: 10ex auto;
+	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #ddd;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2{
+font-family:monospace;
+
+}
+</style>
+</h:head>
+<h:body>
+	<ui:include src="Nav_bar.xhtml"/>
+	
+	<h:form class="form">
+	<h2>Welcome, #{username}!</h2>
+	</h:form>
+	
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>EMI Calculator</title>
+</h:head>
+<h:body>
+<h:form>
+  <h:outputLabel for="p_amt" value="Loan Amount: "/>
+  <h:inputText id="p_amt" value="#{emiCalc.p_amt}"/><br/>
+
+  <h:outputLabel for="roi" value="Interest Rate: "/>
+  <h:inputText id="roi" value="#{emiCalc.roi}"/><br/>
+
+  <h:outputLabel for="l_tenure_year" value="Loan Tenure (Years): "/>
+  <h:inputText id="l_tenure_year" value="#{emiCalc.l_tenure_year}"/><br/>
+
+  <h:outputLabel for="l_tenure_month" value="Loan Tenure (Months): "/>
+  <h:inputText id="l_tenure_month" value="#{emiCalc.l_tenure_month}"/><br/>
+
+  <h:commandButton value="Calculate EMI" action="#{emiCalc.calculateEMI}"/><br/>
+
+  <h:outputLabel for="monthly_emi" value="Monthly EMI: "/>
+  <h:outputText id="monthly_emi" value="#{emiCalc.monthly_emi}"/><br/>
+
+  <h:outputLabel for="interest_amt" value="Total Interest Amount: "/>
+  <h:outputText id="interest_amt" value="#{emiCalc.interest_amt}"/><br/>
+
+  <h:outputLabel for="no_months" value="Number of EMIs: "/>
+  <h:outputText id="no_months" value="#{emiCalc.no_months}"/><br/>
+</h:form>
+
+</h:body>
+</html>

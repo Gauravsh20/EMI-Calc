@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+<h:body>
+<ui:composition>
+	<div class="card">
+		<h:form styleClass="navs">
+			<p:growl id="messages" />
+			<p:menubar>
+				<p:menuitem value="Home" icon="pi pi-fw pi-home"
+					outcome="User_Page.xhtml" />
+
+				<p:submenu label="EMI Calculator" outcome="Calculator_Page.xhtml"
+					icon="pi pi-fw pi-calculator" >
+					<p:menuitem value="Personal Loan" icon="pi pi-fw pi-calculator" outcome="PersonalLoan.xhtml" />
+					<p:menuitem value="Home Loan" icon="pi pi-fw pi-calculator" outcome="HomeLoan.xhtml" />
+					<p:menuitem value="Study Loan" icon="pi pi-fw pi-calculator" outcome="StudyLoan.xhtml" />
+					<p:menuitem value="Car Loan" icon="pi pi-fw pi-calculator" outcome="CarLoan.xhtml" />
+				</p:submenu>
+				<p:divider layout="vertical" />
+
+				<p:submenu label="Users" icon="pi pi-fw pi-user"> 
+					<p:menuitem value="User Search" icon="pi pi-fw pi-user-edit" outcome="Show_AllUsers.xhtml" />
+					<p:menuitem value="Change Password" icon="pi pi-fw pi-unlock" outcome="Change_Password.xhtml"/>
+				</p:submenu>
+
+				<f:facet name="options">
+					<div class="ui-input-icon-left mr-2">
+						<i class="pi pi-fw pi-search" />
+						<p:inputText placeholder="Search" />
+					</div>
+					<p:commandButton action="#{loginPageBean.logout()}" value="Logout"
+						icon="pi pi-fw pi-sign-out" styleClass="ui-button-info" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+	</div>
+</ui:composition>
+</h:body>
+</html>
